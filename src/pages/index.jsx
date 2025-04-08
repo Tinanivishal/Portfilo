@@ -50,17 +50,17 @@ const certifications = [
   },
   {
     name: "DevOps Certified",
-    image: "/certificates/devops.png",
+    image: "/certificates/devops.jpg",
     description: "Certified in core DevOps practices including CI/CD, containerization, infrastructure automation."
   },
   {
     name: "Java Full Stack",
-    image: "/certificates/javafullstack.png",
+    image: "/certificates/java.png",
     description: "Completed Full Stack Java Developer training with backend and frontend experience."
   },
   {
     name: "IANT Course",
-    image: "/certificates/iant.png",
+    image: "/certificates/iant.jpg",
     description: "Completed professional IT training from IANT in networking and system administration."
   }
 ];

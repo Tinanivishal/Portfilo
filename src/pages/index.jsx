@@ -22,18 +22,18 @@ const geistSans = Geist({
 const projects = [
   {
     title: "CI/CD Pipeline with Jenkins",
-    description: "Automated build and deployment pipeline using Jenkins, GitHub, Docker, and Kubernetes.",
-    image: "/projects/jenkins-pipeline.png"
+    description: "Automated build and deployment pipeline using Jenkins, GitHub, Docker, Nginx server and Docker Compose",
+    image: "/projects/jenkins-pipeline.jpg"
   },
   {
     title: "Node.js App Deployment",
     description: "Deployed a scalable Node.js application on AWS EC2 using Docker and NGINX as reverse proxy.",
-    image: "/projects/node-deploy.png"
+    image: "/projects/nodjsproject.jpg"
   },
   {
-    title: "Spring Boot Microservices",
-    description: "Created microservices using Spring Boot with REST APIs and integrated with MySQL database.",
-    image: "/projects/spring-microservices.png"
+    title: "Website of scrap Collection",
+    description: "Created web site using reactjs as Frontend , nodejs as backend Mongodb as database",
+    image: "/projects/image.png"
   },
   {
     title: "Kubernetes Guestbook App",

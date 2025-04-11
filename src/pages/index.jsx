@@ -147,7 +147,7 @@ export default function Home() {
 
         <div className="mt-10 md:mt-0">
           <Image
-            src="/me.png"
+            src="/me.jpg"
             alt="Vishal Tinani"
             width={400}
             height={400}

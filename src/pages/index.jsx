@@ -23,7 +23,8 @@ const projects = [
   {
     title: "CI/CD Pipeline with Jenkins",
     description: "Automated build and deployment pipeline using Jenkins, GitHub, Docker, Nginx server and Docker Compose",
-    image: "/projects/jenkins-pipeline.jpg"
+    image: "/projects/jenkins-pipeline.jpg",
+    sourceCodeUrl:"https://github.com/Tinanivishal/Jenkins-Pipelines.git"
   },
   {
     title: "Node.js App Deployment",
@@ -311,7 +312,7 @@ export default function Home() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="bg-[#112240] p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+              className="bg-[#0A192F] p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
@@ -319,12 +320,18 @@ export default function Home() {
               <Image
                 src={project.image}
                 alt={project.title}
-                width={300}
-                height={200}
+                width={400}
+                height={250}
                 className="rounded-lg mb-4 mx-auto"
               />
               <h3 className="text-xl font-semibold text-[#64FFDA] mb-2">{project.title}</h3>
-              <p className="text-[#CBD5E1] text-sm">{project.description}</p>
+              <p className="text-[#CBD5E1] text-sm mb-4">{project.description}</p>
+              <a
+                href={project.sourceCodeUrl}
+                className="inline-block px-6 py-2 mt-4 text-sm font-semibold bg-[#64FFDA] text-[#0A192F] rounded-xl hover:bg-[#52e0c4] transition duration-300"
+              >
+                View Source Code
+              </a>
             </motion.div>
           ))}
         </div>
@@ -407,6 +414,20 @@ export default function Home() {
           <span>DevOps Engineer & Backend Developer</span>
         </div>
       </div>
+      {/* Social Icons */}
+    <div className="flex space-x-6 text-[#64FFDA]">
+      <a href="https://github.com/Tinanivishal" target="_blank" rel="noopener noreferrer">
+        <Code2 size={32} />
+      </a>
+      <a href="https://www.linkedin.com/in/vishal-tinani/" target="_blank" rel="noopener noreferrer">
+        <Briefcase size={32} />
+      </a>
+    </div>
+
+    {/* Contact Number */}
+    <div className="text-lg text-[#EAEAEA] mt-4">
+      <p>📞 <a href="tel:+91 7990953013" className="hover:text-[#64FFDA]">+91 7990953013</a></p>
+    </div>
     </motion.div>
   </div>
 </section>

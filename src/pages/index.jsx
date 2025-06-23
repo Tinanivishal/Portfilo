@@ -11,6 +11,8 @@ import {
   BadgeCheck,
   FileText,
   Mail,
+  Calendar,
+  ChevronRight,
 } from "lucide-react";
 import "keen-slider/keen-slider.min.css";
 
@@ -68,6 +70,52 @@ const certifications = [
   }
 ];
 
+const experiences = [
+  {
+    id: 1,
+    role: "Technical Support Engineer",
+    company: "Biomax Security",
+    duration: "Jan 2023 - Present",
+    description: [
+      "Tested and configured biometric devices and integrated them with backend systems",
+      "Worked on networking setup, including LAN/WAN configuration and troubleshooting",
+      "Managed servers and hosted websites on multiple operating systems (Windows, Linux)",
+      "Configured web servers such as Apache and Nginx for hosting company websites",
+      "Provided technical support and training to clients on device usage and software installation"
+    ],
+    icon: <Briefcase size={20} className="text-[#64FFDA]" />
+  },
+  {
+    id: 2,
+    role: "DevOps Engineer ",
+    company: "Restrove Pvt Ltd",
+    duration: "Jun 2022 - Dec 2022",
+    description: [
+      "Worked on a 3-tier web application deployment project using Docker and Jenkins",
+      "Set up CI/CD pipelines for automated deployment",
+      "Configured FTP servers for internal file transfer processes",
+      "Deployed and managed applications on Contabo Cloud infrastructure",
+      "Collaborated with development teams to streamline DevOps workflows"
+    ],
+    icon: <Code2 size={20} className="text-[#64FFDA]" />
+  },
+  {
+    id: 3,
+    role: "DevOps Trainee",
+    company: "Avirant Internship",
+    duration: "Jan 2022 - May 2022",
+    description: [
+      "Learned core DevOps tools including Git, Docker, Jenkins, and Kubernetes",
+      "Participated in CI/CD pipeline development and hands-on lab sessions",
+      "Completed Linux system administration and scripting tasks",
+      "Worked on Docker containerization and basic orchestration exercises",
+      "Studied cloud concepts and practiced basic infrastructure automation"
+    ],
+    icon: <Calendar size={20} className="text-[#64FFDA]" />
+  }
+];
+
+
 function FloatingShape({ index }) {
   const ref = useRef(null);
   const x = useMotionValue(0);
@@ -123,6 +171,7 @@ export default function Home() {
   const navItems = [
     { label: "About", icon: <User size={18} /> },
     { label: "Skills", icon: <Code2 size={18} /> },
+    { label: "Experience", icon: <Briefcase size={18} /> },
     { label: "Projects", icon: <Briefcase size={18} /> },
     { label: "Certifications", icon: <BadgeCheck size={18} /> },
     { label: "Resume", icon: <FileText size={18} /> },
@@ -310,6 +359,89 @@ export default function Home() {
             Whether it's scripting, deploying, or debugging, I love diving into the details and delivering robust, secure, and maintainable solutions. My goal is to work in an environment where I can both contribute and grow, pushing the boundaries of what's possible in software infrastructure.
           </p>
         </motion.div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 bg-[#0A192F] px-6 md:px-16 lg:px-32">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              duration: 0.6,
+              type: "spring",
+              stiffness: 100
+            } 
+          }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-3xl md:text-4xl font-bold text-[#64FFDA] text-center mb-12 relative inline-block"
+        >
+          <span className="relative z-10 px-4">
+            Work Experience
+          </span>
+          <motion.span
+            className="absolute bottom-0 left-0 w-full h-1 bg-[#64FFDA]"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            viewport={{ once: true }}
+          />
+        </motion.h2>
+
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#64FFDA] opacity-20"></div>
+          
+          {/* Experience items */}
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={exp.id}
+                className="relative"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+              >
+                {/* Timeline dot */}
+                <div className={`absolute top-6 h-5 w-5 rounded-full bg-[#64FFDA] ${index % 2 === 0 ? 'left-1/2 -ml-10' : 'left-1/2 -ml-10'}`}></div>
+                
+                <div className={`bg-[#112240] p-6 rounded-xl shadow-lg ${index % 2 === 0 ? 'ml-0 md:ml-auto md:w-5/12' : 'mr-0 md:mr-auto md:w-5/12'} relative`}>
+                  <div className="absolute -top-3 left-6 h-6 w-6 transform rotate-45 bg-[#112240]"></div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 rounded-full bg-[#0A192F]">
+                      {exp.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-[#64FFDA]">{exp.role}</h3>
+                      <div className="flex items-center gap-2 text-sm text-[#CBD5E1] mb-2">
+                        <span>{exp.company}</span>
+                        <span>•</span>
+                        <span>{exp.duration}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <ul className="mt-4 space-y-2 pl-2">
+                    {exp.description.map((item, i) => (
+                      <motion.li 
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-[#EAEAEA]"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        <ChevronRight size={16} className="text-[#64FFDA] mt-0.5 flex-shrink-0" />
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Certification Section */}

@@ -75,7 +75,7 @@ const experiences = [
     id: 1,
     role: "Technical Support Engineer",
     company: "Biomax Security",
-    duration: "Jan 2023 - Present",
+    duration: "Feb 2024 - Dec 2024",
     description: [
       "Tested and configured biometric devices and integrated them with backend systems",
       "Worked on networking setup, including LAN/WAN configuration and troubleshooting",
@@ -88,8 +88,8 @@ const experiences = [
   {
     id: 2,
     role: "DevOps Engineer ",
-    company: "Restrove Pvt Ltd",
-    duration: "Jun 2022 - Dec 2022",
+    company: "RESTROVE RETAIL AND AGRO PRIVATE LIMITED",
+    
     description: [
       "Worked on a 3-tier web application deployment project using Docker and Jenkins",
       "Set up CI/CD pipelines for automated deployment",
@@ -103,7 +103,7 @@ const experiences = [
     id: 3,
     role: "DevOps Trainee",
     company: "Avirant Internship",
-    duration: "Jan 2022 - May 2022",
+   
     description: [
       "Learned core DevOps tools including Git, Docker, Jenkins, and Kubernetes",
       "Participated in CI/CD pipeline development and hands-on lab sessions",
@@ -168,14 +168,25 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollYProgress } = useScroll();
 
+  // Function to handle resume download
+  const handleDownloadResume = () => {
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Make sure you have a resume.pdf file in your public folder
+    link.download = 'Vishal_Tinani_Resume.pdf'; // The filename for the downloaded file
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const navItems = [
-    { label: "About", icon: <User size={18} /> },
-    { label: "Skills", icon: <Code2 size={18} /> },
-    { label: "Experience", icon: <Briefcase size={18} /> },
-    { label: "Projects", icon: <Briefcase size={18} /> },
-    { label: "Certifications", icon: <BadgeCheck size={18} /> },
-    { label: "Resume", icon: <FileText size={18} /> },
-    { label: "Contact", icon: <Mail size={18} /> },
+    { label: "About", icon: <User size={18} />, action: null },
+    { label: "Skills", icon: <Code2 size={18} />, action: null },
+    { label: "Experience", icon: <Briefcase size={18} />, action: null },
+    { label: "Projects", icon: <Briefcase size={18} />, action: null },
+    { label: "Certifications", icon: <BadgeCheck size={18} />, action: null },
+    { label: "Resume", icon: <FileText size={18} />, action: handleDownloadResume },
+    { label: "Contact", icon: <Mail size={18} />, action: null },
   ];
 
   return (
@@ -192,8 +203,9 @@ export default function Home() {
               {navItems.map((item) => (
                 <motion.a
                   key={item.label}
-                  href={`#${item.label.toLowerCase()}`}
-                  className="flex items-center gap-2 hover:text-[#64FFDA] transition duration-200"
+                  href={item.action ? '#' : `#${item.label.toLowerCase()}`}
+                  onClick={item.action || null}
+                  className="flex items-center gap-2 hover:text-[#64FFDA] transition duration-200 cursor-pointer"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -226,8 +238,9 @@ export default function Home() {
             {navItems.map((item) => (
               <motion.a
                 key={item.label}
-                href={`#${item.label.toLowerCase()}`}
-                className="block flex items-center justify-center gap-2 text-[#EAEAEA] hover:text-[#64FFDA] transition duration-200 py-2"
+                href={item.action ? '#' : `#${item.label.toLowerCase()}`}
+                onClick={item.action || null}
+                className="block flex items-center justify-center gap-2 text-[#EAEAEA] hover:text-[#64FFDA] transition duration-200 py-2 cursor-pointer"
                 whileTap={{ scale: 0.95 }}
               >
                 {item.icon}
@@ -644,14 +657,18 @@ export default function Home() {
               />
               <h3 className="text-xl font-semibold text-[#64FFDA] mb-2 group-hover:text-white transition-colors duration-300">{project.title}</h3>
               <p className="text-[#CBD5E1] text-sm mb-4">{project.description}</p>
-              <motion.a
-                href={project.sourceCodeUrl}
-                className="inline-block px-6 py-2 mt-4 text-sm font-semibold bg-[#64FFDA] text-[#0A192F] rounded-xl hover:bg-[#52e0c4] transition duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Source Code
-              </motion.a>
+              {project.sourceCodeUrl && (
+                <motion.a
+                  href={project.sourceCodeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-2 mt-4 text-sm font-semibold bg-[#64FFDA] text-[#0A192F] rounded-xl hover:bg-[#52e0c4] transition duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View Source Code
+                </motion.a>
+              )}
             </motion.div>
           ))}
         </div>
